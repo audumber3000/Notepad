@@ -1,0 +1,121 @@
+dev - AUDUMBER CHAUDHARI
+package audu;
+import java.awt.*;  
+import java.awt.event.*;  
+public class KeyListenerExample extends Frame implements KeyListener{  
+    Label l , a ,c,m; 
+    
+    TextArea area; 
+    MenuItem New, Open,Save,Exit,h,fb;
+    Menu file , Edit,view,Help;
+    Button b;
+    boolean z;
+    KeyListenerExample(){  
+          
+    	 
+    	    
+        area=new TextArea();  
+        area.setBounds(20,80,550, 400);  
+        area.addKeyListener(this);  
+          
+        
+        file=new Menu("File");
+        Edit=new Menu("Edit");
+        view=new Menu("View");
+        Help=new Menu("Help");
+        
+       
+        
+        New=new MenuItem("New");
+        Open=new MenuItem("Open");
+        Save=new MenuItem("Save");
+        Exit=new MenuItem("Exit");
+        
+       MenuBar mb=new MenuBar(); 
+       file.add(New);
+       file.add(Open);
+       file.add(Save);
+       file.add(Exit);
+       
+       h=new MenuItem("View Help");
+       fb=new MenuItem("send feedbacks");
+       Help.add(h);
+       Help.add(fb);
+       
+       l=new Label();  
+       l.setBounds(450,500,100,30); 
+       c = new Label("  Key Status");
+       c.setBounds(350, 500, 80, 30);
+       c.setBackground(Color.yellow);
+       add(c);
+       
+       a = new Label(""); 
+       a.setBounds(150,500,100,30);
+       
+       b = new Button("Count");
+       b.setBounds(20, 500, 100, 30);
+       b.setBackground(Color.yellow);
+       add(b);
+        
+    		  
+      mb.add(file);
+      mb.add(Edit);
+      mb.add(view);
+      mb.add(Help);
+        
+        add(l);add(area); add(a); 
+        setSize(600,600);  
+        setLayout(null);  
+        setVisible(true); 
+        setTitle("NoteTap");
+        setMenuBar(mb);
+        setBackground(Color.orange);
+      
+    b.addActionListener(new ActionListener(){
+    public void actionPerformed(ActionEvent e) {
+        
+        int c = area.getText().length();
+       
+        a.setText("Characters " + c);
+    }
+    });
+    
+   
+    
+    m=new Label();
+    m.setBounds(350,560,200,20);
+    add(m);
+    z = true; 
+    execute(); 
+    
+    }
+    public void execute() 
+    { 
+        while (z) { 
+            // get the pointer info object from the mouseInfo 
+            PointerInfo pi = MouseInfo.getPointerInfo(); 
+  
+            // get the location of mouse 
+            Point p = pi.getLocation(); 
+  
+            // set the text of labels 
+            m.setText("X position =" + p.getX() + " Y position =" + p.getY()); 
+            
+        } 
+    } 
+   
+    public void keyPressed(KeyEvent e) {  
+        l.setText("Key Pressed");  
+    }  
+    public void keyReleased(KeyEvent e) {  
+        l.setText("Key Released");  
+    }  
+    public void keyTyped(KeyEvent e) {  
+        l.setText("Key Typed");  
+    }  
+  
+    public static void main(String[] args) {  
+        new KeyListenerExample(); 
+       
+    }  
+} 
